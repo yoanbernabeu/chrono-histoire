@@ -41,6 +41,7 @@ function initApp() {
     renderWheel();
     updateSelectionList(); // Mettre à jour la liste latérale avec la sélection importée
     setupObserver();
+    setupMobilePanel();
 
     // Écouteur pour la recherche
     searchInput.addEventListener('input', (e) => {
@@ -230,6 +231,31 @@ function removeSelection(id) {
     if(domItem) domItem.classList.remove('selected');
     updateSelectionList();
 }
+
+// --- MOBILE PANEL LOGIC ---
+function setupMobilePanel() {
+    const mobileToggleBtn = document.getElementById('mobile-panel-toggle');
+    const selectionPanel = document.getElementById('selection-panel');
+    
+    if (!mobileToggleBtn || !selectionPanel) return;
+
+    mobileToggleBtn.addEventListener('click', () => {
+        // Vérifie si le panneau est réduit (hauteur de base)
+        // Note: on check la classe h-[85px]
+        const isCollapsed = selectionPanel.classList.contains('h-[85px]');
+        
+        if (isCollapsed) {
+            // On déploie
+            selectionPanel.classList.remove('h-[85px]');
+            selectionPanel.classList.add('h-2/3'); // Utilise une classe standard Tailwind (66%)
+        } else {
+            // On réduit
+            selectionPanel.classList.add('h-[85px]');
+            selectionPanel.classList.remove('h-2/3');
+        }
+    });
+}
+
 
 // --- WIKIPEDIA API LOGIC ---
 
