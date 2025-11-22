@@ -21,28 +21,33 @@ body {
 
 /* Effet Roue (Scroll Snap) */
 .wheel-container {
-    height: 50vh; /* La roue prend la moitié de l'écran */
+    height: 100%; /* Utiliser toute la hauteur disponible du parent */
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     position: relative;
     padding-top: 40vh; /* Espacement pour centrer le 1er élément */
     padding-bottom: 40vh;
     scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* Optimisation iOS */
 }
 
 .wheel-item {
     scroll-snap-align: center;
     transition: all 0.3s ease;
     opacity: 0.5;
-    transform: scale(0.9);
+    transform: scale(0.9) translateZ(0); /* translateZ force le GPU sur iOS */
+    -webkit-transform: scale(0.9) translateZ(0);
     margin-bottom: 2rem;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 /* L'élément actif (au centre) via JS */
 .wheel-item.active {
     opacity: 1;
-    transform: scale(1.05);
-    z-index: 10;
+    transform: scale(1.05) translateZ(0);
+    -webkit-transform: scale(1.05) translateZ(0);
+    z-index: 50;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
 }
 
@@ -74,16 +79,20 @@ body {
     left: 0;
     right: 0;
     height: 100px;
-    z-index: 5;
+    z-index: 20; /* Augmenté pour être au-dessus du conteneur (z-10) */
     pointer-events: none;
 }
 .wheel-overlay-top {
     top: 0;
-    background: linear-gradient(to bottom, #f0f9ff, transparent);
+    background: linear-gradient(to bottom, #f8fafc 0%, #f8fafc 40%, rgba(248, 250, 252, 0.8) 60%, transparent 100%);
+    height: 180px; /* Augmenté pour couvrir la zone des filtres */
+    z-index: 20;
 }
 .wheel-overlay-bottom {
     bottom: 0;
-    background: linear-gradient(to top, #f0f9ff, transparent);
+    background: linear-gradient(to top, #f8fafc 0%, #f8fafc 20%, rgba(248, 250, 252, 0.8) 50%, transparent 100%);
+    height: 100px;
+    z-index: 20;
 }
 
 /* MODALE WIKIPEDIA */
