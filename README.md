@@ -2,6 +2,8 @@
 
 **Chrono-Histoire** est une application web éducative, ludique et interactive, conçue pour aider les élèves de **CM2 et 6ème** à réviser les grandes dates de l'Histoire de France et du Monde.
 
+![Chrono-Histoire](./image.png)
+
 ## 🎯 Objectif Pédagogique
 
 L'objectif est de proposer un outil simple et attrayant pour mémoriser la chronologie historique, un élément clé des programmes scolaires de fin de cycle 3 (CM1, CM2, 6ème).
