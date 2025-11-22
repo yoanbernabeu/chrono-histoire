@@ -34,7 +34,8 @@ body {
 .wheel-item {
     scroll-snap-align: center;
     transition: all 0.3s ease;
-    opacity: 0.5;
+    opacity: 0.6; /* Légèrement plus opaque par défaut */
+    background-color: white; /* Force un fond blanc opaque */
     transform: scale(0.9) translateZ(0); /* translateZ force le GPU sur iOS */
     -webkit-transform: scale(0.9) translateZ(0);
     margin-bottom: 2rem;
@@ -44,7 +45,8 @@ body {
 
 /* L'élément actif (au centre) via JS */
 .wheel-item.active {
-    opacity: 1;
+    opacity: 1 !important; /* Force l'opacité totale */
+    background-color: white !important; /* Force le fond blanc */
     transform: scale(1.05) translateZ(0);
     -webkit-transform: scale(1.05) translateZ(0);
     z-index: 50;
